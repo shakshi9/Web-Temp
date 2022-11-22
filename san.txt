@@ -33,10 +33,7 @@ if (isset($_POST["submit"])) {
 
     $uploads_dir = 'images';
     move_uploaded_file($tname, $uploads_dir . '/' . $pname);
-
-    $stmt = $conn->prepare("INSERT into fileup(title,image) VALUES(?,?)");
-    $stmt->bind_param("ss", $title, $pname);
-    $stmt->execute();
+    $sql = "INSERT into fileup(title,image) VALUES('$title','$pname')";
 
     if (mysqli_query($conn, $sql)) {
         echo "File Sucessfully uploaded";
@@ -44,6 +41,4 @@ if (isset($_POST["submit"])) {
         echo "Error";
     }
 }
-
-
 ?>
